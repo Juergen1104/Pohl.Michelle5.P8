@@ -8,15 +8,12 @@ public class RegPatternMatcher {
     // 2
     public static void findAdverbs(String text) {
 
-        // Muster für Adverbien, die auf 'ly' enden und nur aus Buchstaben bestehen
         Pattern adverbPattern = Pattern.compile("\\b[A-Za-z]+ly\\b");
         Matcher matcher = adverbPattern.matcher(text);
 
-        // StringBuffer zur Sammlung der gefundenen Adverbien
-        StringBuffer adverbs = new StringBuffer();
+        StringBuilder adverbs = new StringBuilder();
         int count = 0;
 
-        // Durchsuche den Text nach allen Adverbien
         while (matcher.find()) {
             adverbs.append(matcher.group()).append(" ");
             count++;
@@ -25,17 +22,14 @@ public class RegPatternMatcher {
         // Ausgabe der Ergebnisse
         System.out.println("The text \"" + text + "\"");
         System.out.println("contains " + count + " adverb(s): " + adverbs.toString().trim());
-
     }
 
     /* *** Aufgabenteil (b) *** */
     // 3*
     public static void findRecipesWithoutChocolate(String recipes) {
 
-        // Regulärer Ausdruck mit negativem Lookahead
         String regex = "(Cake \\d+:.*?)(?<!chocolate)(?=\n)";
-
-        Pattern pattern = Pattern.compile("(?s)(Cake \\d+:.*?)(?=\n)");
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(recipes);
 
         while (matcher.find()) {
@@ -73,5 +67,4 @@ public class RegPatternMatcher {
         findRecipesWithoutChocolate(recipeList);
 
     }
-
 }
